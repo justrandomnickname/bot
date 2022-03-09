@@ -11,11 +11,18 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
+
+  Ticket.associate = function (models) {
+    Ticket.belongsTo(models.Area, {
+      foreignKey: "areaId",
+      onDelete: "CASCADE",
+    });
+  };
   Ticket.init(
     {
       text: DataTypes.STRING,
-      city: DataTypes.STRING,
       phone: DataTypes.STRING,
+      areaId: DataTypes.INTEGER,
     },
     {
       sequelize,

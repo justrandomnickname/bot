@@ -1,5 +1,7 @@
 "use strict";
+
 const { Model } = require("sequelize");
+
 module.exports = (sequelize, DataTypes) => {
   class Area extends Model {
     /**
@@ -16,6 +18,10 @@ module.exports = (sequelize, DataTypes) => {
     Area.belongsTo(models.City, {
       foreignKey: "cityId",
       onDelete: "CASCADE",
+    });
+
+    Area.hasMany(models.Ticket, {
+      foreignKey: "areaId",
     });
   };
   Area.init(
